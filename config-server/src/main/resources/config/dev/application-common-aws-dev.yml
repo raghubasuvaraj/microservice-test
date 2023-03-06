@@ -1,0 +1,10 @@
+aws:
+  s3:
+    institute:
+      bucket:
+        region: AP_SOUTH_1
+    bucket:
+      access:
+        key: AKIAVEKHB22X6PBXLL5T
+      secret:
+        key: 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

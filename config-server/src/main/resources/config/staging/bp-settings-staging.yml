@@ -1,0 +1,17 @@
+server:
+  port: 8002
+  servlet:
+    context-path: /settings-service
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: bp-settings
+
+  cache:
+    redis:
+      key-prefix: BP_MASTER_

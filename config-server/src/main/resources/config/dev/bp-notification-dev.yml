@@ -1,0 +1,44 @@
+#SERVICE-CONTEXT 
+server:
+  port: 8004
+  servlet:
+    context-path: /notification
+
+#EUREKA
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://43.204.50.176:8761/eureka/
+
+spring:
+   main:
+    allow-bean-definition-overriding: true
+  application:
+    name: bp-notification
+  profiles:
+    group:
+      dev: common-datasource-dev, common-redis-dev, common-aws-dev
+        
+#Rabbit MQ
+  rabbitmq:
+    host: 43.204.50.176
+    port: 5672
+    username: admin
+    password: 78FMrkbVjap6XFXf
+    
+app:
+   mail:
+    host: smtp.mailgun.org
+    port: 587
+    username: postmaster@app.bankerspolis.com
+    password: d060214ab9a35240c9bdca106d7a8b1e-02fa25a3-fcd13f4a
+  rabbitmq: 
+    queue: queue_bp_local
+    routingKey: abc
+    exchange: exchange_bp_local
+
+# LOGGING     
+logging:
+  level: 
+    ROOT: INFO
+    com.netflix.discovery.DiscoveryClient: ERROR   

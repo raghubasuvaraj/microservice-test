@@ -1,0 +1,33 @@
+
+#SERVICE-CONTEXT 
+server:
+  port: 8003
+  servlet:
+    context-path: /agency-service
+
+#EUREKA  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: bp-agency
+
+#  profiles:
+#      include:
+#        - common-datasource-dev
+#        - common-redis-dev
+#        - common-aws-dev
+
+  cache:
+    redis:
+      key-prefix: BP_AGENCY_
+ 
+# LOGGING     
+logging:
+  level: 
+    ROOT: INFO
+    com.netflix.discovery.DiscoveryClient: ERROR
+ 

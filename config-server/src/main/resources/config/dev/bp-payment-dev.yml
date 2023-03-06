@@ -1,0 +1,16 @@
+server:
+  port: 8005
+  servlet:
+    context-path: /payment-service
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://43.204.50.176:8761/eureka/
+
+spring:
+  application:
+    name: bp-payment
+  profiles:
+    group:
+      dev: common-datasource-dev, common-redis-dev, common-aws-dev

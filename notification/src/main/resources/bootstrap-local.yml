@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: BP-NOTIFICATION
+    
+  cloud:
+    config:
+      enabled: false

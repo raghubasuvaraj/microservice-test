@@ -1,0 +1,103 @@
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+server:
+  port: 9090
+  servlet:
+    context-path: /api-gateway
+
+spring:
+  application:
+    name: API-GATEWAY
+    
+  main:
+    web-application-type: REACTIVE
+    allow-bean-definition-overriding: TRUE
+      
+  cloud:
+    gateway:
+      routes:
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE/auth-service
+          predicates:
+            - Path=/auth-service/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: AUTH-SERVICE
+                fallbackUri: forward:/v1/api/fallback/auth-service
+        - id: INSTITUTE-SERVICE
+          uri: lb://INSTITUTE-SERVICE/institute-service
+          predicates:
+            - Path=/institute-service
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: INSTITUTE-SERVICE
+                fallbackUri: forward:/v1/api/fallback/institute-service                     
+            
+
+# ...Resiliance configurations... #           
+logging:
+  level:
+    io:
+     github:
+      resilience4j: DEBUG
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 2s
+      failureRateThreshold: 5
+      eventConsumerBufferSize: 10
+      slowCallDurationThreshold: 200ms
+      slowCallRateThreshold: 30
+      recordExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+      ignoreExceptions:
+        - java.lang.IllegalStateException
+    shared:
+      slidingWindowSize: 100
+      permittedNumberOfCallsInHalfOpenState: 30
+      waitDurationInOpenState: 1s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+      ignoreExceptions:
+        - java.lang.IllegalStateException
+  instances:
+    backendA:
+      baseConfig: default
+    backendB:
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 10
+      permittedNumberOfCallsInHalfOpenState: 3
+      waitDurationInOpenState: 1s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+      recordFailurePredicate: com.sta.cloudGatewayService.HttpInternalServicePredicate
+
+resilience4j.timelimiter:
+  time-limiter-aspect-order: 398
+  configs:
+    default:
+      timeoutDuration: 1s
+      cancelRunningFuture: false
+  instances:
+    backendB:
+      timeoutDuration: 250ms
+            
+            
+            
+            

@@ -1,0 +1,14 @@
+#MYSQL
+spring:
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000
+      key-prefix: BP_AGENCY_
+  redis:
+    host: 43.204.50.176
+    password: jPnbUZSqSZ3UaNXF
+    port: 6379
+  jackson:
+    serialization:
+      fail-on-empty-beans: false

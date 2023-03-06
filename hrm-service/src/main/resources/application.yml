@@ -1,0 +1,13 @@
+server:
+  port: 8003
+  servlet:
+    context-path: /hrm-service
+spring:
+  application:
+    name: HRM-SERVICE
+
+logging:
+  level:
+    root: INFO
+
+

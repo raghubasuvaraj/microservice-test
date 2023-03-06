@@ -1,0 +1,13 @@
+server:
+  port: 8012
+  servlet:
+    context-path: /document-service
+spring:
+  application:
+    name: DOCUMENT-SERVICE
+
+logging:
+  level:
+    root: INFO
+
+

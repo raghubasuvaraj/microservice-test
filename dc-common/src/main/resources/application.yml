@@ -1,0 +1,47 @@
+
+#autoconfigure.exclude, used to Disable the database. After adding the dependancy spring-boot-starter-data-jpa, need to config the database.
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+    
+  #Use this to befriend spring-boot-starter-actuator & springfox-boot-starter
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+      
+  application:
+      name: COMMON-UTILITY
+  cloud:
+    function:
+      definition: consumer;producer
+    stream:
+      kafka:
+        bindings:
+          producer-out-0:
+            producer:
+              configuration:
+                value.serializer: com.sta.coverters.MessageSerializer
+          consumer-in-0:
+            consumer:
+              configuration:
+                value.deserializer: com.sta.coverters.MessageDeSerializer
+        binder:
+          brokers: localhost:9092   #put kafka server url here
+
+      bindings:
+        producer-out-0:
+          destination: first-topic #put topic name here
+          producer:
+            useNativeEncoding: true # Enables using the custom serializer
+        consumer-in-0:
+          destination: first-topic #put topic name here
+          consumer:
+            use-native-decoding: true # Enables using the custom deserializer
+logging:
+  level:
+    org: 
+     springframework:
+      boot:
+       autoconfigure: ERROR
+
+

@@ -1,0 +1,22 @@
+#SERVICE-CONTEXT
+server:
+  port: 8006
+  servlet:
+    context-path: /case-service
+
+#EUREKA
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://43.204.50.176:8761/eureka/
+
+spring:
+  application:
+    name: bp-case
+  profiles:
+    group:
+      dev: common-datasource-dev, common-redis-dev, common-aws-dev
+
+  cache:
+    redis:
+      key-prefix: BP_CASE_

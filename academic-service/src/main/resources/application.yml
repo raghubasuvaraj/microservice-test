@@ -1,0 +1,9 @@
+server:
+  servlet:
+    context-path: /academic-service
+spring:
+  application:
+    name: ACADEMIC-SERVICE
+  profiles:
+    active:
+      - local #local | dev

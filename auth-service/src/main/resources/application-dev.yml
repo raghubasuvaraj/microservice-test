@@ -1,0 +1,59 @@
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+
+server:
+  port: 8001
+  servlet:
+    context-path: /auth-service
+    
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Aq*3d@Hd5r    
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update #none      
+  application:
+    name: AUTH-SERVICE
+    
+  security: #oAuth2 resource server, jwt token provider with keycloak
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/auth/realms/ss-garments-realm
+ 
+#Keycloak credentials         
+keycloak:
+  admin:
+    keycloakUrl: http://localhost:8080/auth
+    adminUser: admin
+    adminPassword: admin
+    adminRealm: master
+    adminClientId: admin-cli
+    realm: dps-master-realm    
+  client-id: dps-master-client
+  client-secret: 6c3ae6f6-e2ec-4925-80c2-d8bb56ad1a75 #change this
+  scope: openid, profile
+  server-url: http://localhost:8080/auth
+  authorization-uri: http://localhost:8080/auth/realms/dps-master-realm/protocol/openid-connect/auth
+  user-info-uri: http://localhost:8080/auth/realms/dps-master-realm/protocol/openid-connect/userinfo
+  token-uri: http://localhost:8080/auth/realms/dps-master-realm/protocol/openid-connect/token
+  logout: http://localhost:8080/auth/realms/dps-master-realm/protocol/openid-connect/logout
+  
+    
+    
+
+

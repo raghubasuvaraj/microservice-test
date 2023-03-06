@@ -1,0 +1,13 @@
+server:
+  port: 8006
+  servlet:
+    context-path: /frontDesk-service
+spring:
+  application:
+    name: FRONT-DESK-SERVICE
+
+logging:
+  level:
+    root: INFO
+
+

@@ -1,0 +1,19 @@
+#SERVICE-CONTEXT
+server:
+  port: 8006
+  servlet:
+    context-path: /case-service
+
+#EUREKA
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: bp-case
+
+  cache:
+    redis:
+      key-prefix: BP_CASE_

@@ -1,0 +1,43 @@
+server:
+  port: 9090
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      
+logging:
+  level: 
+    ROOT: INFO
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+#    org.springframework.cloud.gateway: TRACE
+#    sun.rmi.transport.tcp : ERROR
+#    javax.management.remote.rmi : ERROR
+#    org.apache.catalina.session.ManagerBase: ERROR
+#    org.apache.http.wire : ERROR
+#    o.a.http.impl.execchain.MainClientExe: ERROR
+#    org.apache.http.headers : ERROR
+#    com.netflix.discovery.DiscoveryClient : ERROR
+#    o.a.h.client.protocol.RequestAddCookies: ERROR
+#    o.a.http.impl.execchain.MainClientExec : ERROR
+#    h.i.c : ERROR
+#    sun.rmi: ERROR
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+        
+spring:
+  application:
+    name: bp-gateway
+
+jwt:
+  secret: bp_secret_gusse_fi_uyoCan$0404222327
+  
+app:
+  authservice:
+    baseurl: http://localhost:8001

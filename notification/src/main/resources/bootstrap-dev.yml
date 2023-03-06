@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: bp-notification,application-common-aws-dev,application-common-datasource-dev,application-common-redis-dev
+    
+  cloud:
+    config:
+      uri: http://43.204.50.176:8888
+      fail-fast: true

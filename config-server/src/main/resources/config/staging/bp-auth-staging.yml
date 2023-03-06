@@ -1,0 +1,22 @@
+#SERVICE-CONTEXT
+server:
+  port: 8001
+  servlet:
+    context-path: /auth-service
+
+#EUREKA
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: bp-auth
+      
+  cache:
+    redis:
+      key-prefix: BP_AUTH_
+jwt:
+  secret: bp_secret_gusse_fi_uyoCan$0404222327
+  expiration: 86400

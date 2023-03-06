@@ -1,0 +1,39 @@
+#SERVICE-CONTEXT
+server:
+  port: 8001
+  servlet:
+    context-path: /auth-service
+
+#EUREKA
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://43.204.50.176:8761/eureka/
+
+spring:
+  application:
+    name: bp-auth
+  #profiles:
+  #  active: dev
+    #include: 
+    #- common-datasource-dev
+    #- common-redis-dev
+    #- common-aws-dev 
+  cache:
+    redis:
+      key-prefix: BP_AUTH_
+jwt:
+  secret: bp_secret_gusse_fi_uyoCan$0404222327
+  expiration: 86400
+
+#AWS
+aws:
+  s3:
+    institute:
+      bucket:
+        region: AP_SOUTH_1
+    bucket:
+      access:
+        key: AKIAVEKHB22X6PBXLL5T
+      secret:
+        key: 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

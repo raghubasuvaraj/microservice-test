@@ -1,0 +1,13 @@
+server:
+  port: 8009
+  servlet:
+    context-path: /examination-service
+spring:
+  application:
+    name: EXAMINATION-SERVICE
+
+logging:
+  level:
+    root: INFO
+
+

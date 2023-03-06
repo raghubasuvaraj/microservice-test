@@ -1,0 +1,32 @@
+server:
+  port: 8002
+  servlet:
+    context-path: /fee-service
+spring:
+  application:
+    name: FEE-SERVICE
+  datasource:
+    url : jdbc:h2:file:./h2/app_db;DB_CLOSE_ON_EXIT=FALSE
+    username : sa
+    password :
+    driverClassName : org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto : update
+    properties :
+      hibernate :
+        dialect : org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace : false
+        web-allow-others : false
+
+logging:
+  level:
+    root: INFO
+
+
